@@ -6,7 +6,7 @@ def seznam_tabela(vrednost, visina, sirina):
     return tabela
 
 def velika_stevila(n,x):
-    tabela = np.full(n,x, dtype=np.int64)
+    tabela = np.full(n, x, dtype=np.int64)
     return tabela
 
 def odmik_od_povprecja(tabela):
