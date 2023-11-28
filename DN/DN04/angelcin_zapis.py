@@ -1,38 +1,74 @@
 import unittest
 
 def koordinate(obstacle):
-    return (int(obstacle.strip('-')), int(obstacle.strip('-')) + obstacle.count('-') - 1)
+    x1 = int(obstacle.strip('-'))
+    return x1, x1 + obstacle.count('-') - 1
 
 def vrstica(row):
-    row_num = int(row[row.find("(") + 1: row.find(")")])
-    row = row[row.find(")") + 1:]
 
+    row = row.split()
     row_obstacles = []
 
-    for obstacle in row.split():
-        x, y = koordinate(obstacle)
-        row_obstacles.append((x, y, row_num))
+    for obstacle in row[1:]:
+        y = int(row[0][1:-1])
+        row_obstacles.append(koordinate(obstacle) + (y, ))
 
     return row_obstacles
 
 def preberi(map):
     map_obstacle = []
 
-    for row in map.split("\n")[:-1]:
-        map_obstacle.extend(vrstica(row))
+    for row in map.splitlines():
+        map_obstacle += vrstica(row)
 
     return map_obstacle
 
 
 def intervali(obstacles):
-    row_obstacles = []
-    for x, size in obstacles:
-        row_obstacles.append(str(x) + '-' * (size - x + 1))
-    return row_obstacles
+    # Simple solution
+    # row_obstacles = []
+    # for x, size in obstacles:
+    #     row_obstacles.append(str(x) + '-' * (size - x + 1))
+    # return row_obstacles
+
+    # Advance solution
+    return [f"{x}{'-' * (size - x + 1)}" for x, size in obstacles]
 
 
 def zapisi_vrstico(row, row_obstacles):
     return "(" + str(row) + ") " + " ".join(intervali(row_obstacles))
+
+
+def zapisi(table_obstacles):
+    # Moja za kurac resitva
+    # obstacles_string = ""
+    # current_row = None
+    #
+    # for x, y, row in sorted(sorted(table_obstacles), key=lambda table_obstacles: table_obstacles[2]):
+    #     if current_row != row:
+    #         if obstacles_string != "":
+    #             obstacles_string += "\n"
+    #         current_row = row
+    #         obstacles_string += "(" + str(current_row) + ")"
+    #
+    #     obstacles_string += " " + str(x) + '-' * (y - x + 1)
+    #
+    # return obstacles_string
+
+    #Prava resitev
+    rows = []
+    for x, y, row in table_obstacles:
+        while len(rows) <= row:
+            rows.append([])
+        rows[row].append((x,y))
+
+    zemljevid = ""
+    for row, obstacles in enumerate(rows):
+        if obstacles:
+            zemljevid += zapisi_vrstico(row, sorted(obstacles)) + "\n"
+
+    return zemljevid
+
 class Obvezna(unittest.TestCase):
     def test_koordinate(self):
         self.assertEqual((3, 4), koordinate("3--"))
