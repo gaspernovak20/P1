@@ -113,7 +113,7 @@ def cikel(zacetna_tocka, pribitki):
     return len(known)
 
 
-def izpadanje(poti, pribitkii):
+# def izpadanje(poti, pribitkii):
     
 
 import unittest
