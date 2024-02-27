@@ -40,7 +40,6 @@ def imena_v_rodbini(ime):
         family += imena_v_rodbini(child)
     return family
 
-
 def najmlajsi_v_rodbini(ime):
     najmlajsi_list = [(starost[ime], ime)]
 
