@@ -1,0 +1,6 @@
+Orgum: 15: 3, 5, 7
+Gubgat: 20: 10, 5, 6
+Thrombaq: 5: 1
+Thrombaq 2: 5: 1, 4
+Humwat Bolwat: 10: 2, 2, 2, 2, 2, 2
+Askeg 8: 13: 14

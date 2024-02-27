@@ -1,0 +1,8 @@
+grava: A-B, B-C
+travel: A-B
+avtocesta: B-C
+pesek: A-B, A-C, D-WWTGI
+crepinje: B-C, A-E
+pesci: A-E
+vescina360: D-WWTGI
+vescina754:
